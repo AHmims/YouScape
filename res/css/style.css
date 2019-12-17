@@ -1,0 +1,92 @@
+html,
+body {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/*  */
+#Container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#Top {
+    width: 100%;
+    height: 50px;
+    background-color: lightgreen;
+    display: flex;
+    align-items: center;
+}
+
+#Timer {
+    flex: 1;
+    text-align: end;
+}
+
+/*  */
+#Main {
+    flex: auto;
+    width: 100%;
+    background-color: lightblue;
+    /*  */
+    display: flex;
+    flex-direction: row;
+}
+
+#Left {
+    width: 200px;
+    height: 100%;
+    background-color: lightseagreen;
+}
+
+/*  */
+#Right {
+    flex: auto;
+    background-color: mediumpurple;
+    /*  */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formContainer {
+    margin-top: 75px;
+    /*  */
+    display: flex;
+    flex-direction: column;
+}
+
+#formQuestion {
+    font-size: 3rem;
+}
+
+#formInput {
+    width: 275px;
+    height: 25px;
+}
+
+#formSubmit {
+    border: 1px solid black;
+    width: fit-content;
+    font-size: 1.5rem;
+    padding: 5px 7.5px;
+    cursor: pointer;
+    user-select: none;
+}
+
+/*  */
+#Bottom {
+    width: 100%;
+    height: 30px;
+    background-color: hotpink;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#Progress {}
