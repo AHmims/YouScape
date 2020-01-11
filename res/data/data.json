@@ -1,29 +1,95 @@
 [{
-    "game": "game-1",
-    "data": [{
-            "id": "g1-q1",
-            "question": "What's 1 + 1 ?",
-            "response": "1"
-        },
-        {
-            "id": "g1-q2",
-            "question": "What's 1 + 1 ?",
-            "response": "2"
-        },
-        {
-            "id": "g1-q3",
-            "question": "What's 1 + 2 ?",
-            "response": "3"
-        },
-        {
-            "id": "g1-q4",
-            "question": "What's 1 + 3 ?",
-            "response": "4"
-        },
-        {
-            "id": "g1-q5",
-            "question": "What's 1 + 4 ?",
-            "response": "5"
-        }
-    ]
-}]
+        "game": "set-1",
+        "data": [{
+                "id": "part-1",
+                "type": "text",
+                "question": "L'équivalent de cette série de chiffres <089 111 117 067 111 100 101> en lettres :",
+                "strict_response": "true",
+                "response": "YouCode"
+            },
+            {
+                "id": "part-2",
+                "type": "text",
+                "question": "Qui il est le person derrière la premiere implementation d'algorithme dans les machines ?",
+                "strict_response": "false",
+                "response": "Ada Lovelace"
+            },
+            {
+                "id": "part-3",
+                "type": "array",
+                "question": [
+                    "L'équivalent de cette série de chiffres en lettres et le réorganiser",
+                    "01101100 01000001 01101110 01100001 00100000",
+                    "01101110 01110101 01101001 01110010 01100111 01010100"
+                ],
+                "strict_response": "true",
+                "response": "Alan Turing"
+            },
+            {
+                "id": "part-4",
+                "type": "text",
+                "question": "Le mois de naissance de la personne qui a décrypté le système de chiffrement utilisé dans une certaine guerre :",
+                "strict_response": "false",
+                "response": "6"
+            },
+            {
+                "id": "part-5",
+                "type": "text",
+                "question": "Si nous décalons chaque mot par un nombre, qu'est-ce que le mot <ktomsg> signifie ?",
+                "strict_response": "false",
+                "response": "ENIGMA"
+            }
+        ]
+    },
+    {
+        "game": "set-2",
+        "data": [{
+                "id": "part-1",
+                "type": "image",
+                "question": [
+                    "Quel animal est-ce ? (en anglais)",
+                    "../img/animal.png"
+                ],
+                "strict_response": "false",
+                "response": "snake"
+            },
+            {
+                "id": "part-2",
+                "type": "array",
+                "question": [
+                    "Utiliser un certain <Cipher> pour decrypter la chaine suivante",
+                    "<AB,ZP,DL,JK,CQ,TA,SW,EW,NC>"
+                ],
+                "strict_response": "false",
+                "response": "BOOTSTRAP"
+            },
+            {
+                "id": "part-3",
+                "type": "array",
+                "question": [
+                    "Observez votre entourage et trouvé quatre lettres, puis le transformer en chiffres, réorganisez les chiffres pour trouver le bon choix",
+                    "(A-Z -> 1-26)"
+                ],
+                "strict_response": "false",
+                "response": "1337"
+            },
+            {
+                "id": "part-4",
+                "type": "array",
+                "question": [
+                    "Trouver la séquence de lettres",
+                    "(trier la chaine par ordre alphabétique)"
+                ],
+                "strict_response": "false",
+                "response": "AJNY"
+            },
+            {
+                "id": "part-5",
+                "type": "text",
+                "question": "Décode la chaîne du quiz précédent (réorganisez les letters si nécessaire)",
+                "strict_response": "false",
+                "response": "CODE"
+            }
+        ]
+    }
+]

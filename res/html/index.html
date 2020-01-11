@@ -12,22 +12,42 @@
 </head>
 
 <body>
+    <div id="auth">
+        <span id="auth-title">Authentication Form</span>
+        <input type="text" id="auth-id" placeholder="Group Identifier">
+        <span id="auth-btn">
+            authenticate
+        </span>
+    </div>
+    <div id="start">
+        <span id="start-btn">Begin</span>
+    </div>
     <div id="Container">
         <div id="Top">
             <span id="Logo">YouScape</span>
-            <span id="Timer">Timer</span>
+            <span id="timer-container">
+                <span id="timer">
+                    <span id="timer-min">45</span>
+                    <span>:</span>
+                    <span id="timer-sec">00</span>
+                </span>
+            </span>
         </div>
         <div id="Main">
-            <div id="Left">
-                <span>Game Rules. <br />Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, culpa
-                    nemo
-                    cupiditate, voluptatem vel maxime dolor ducimus nam totam quas, earum quos officiis quisquam
-                    consequuntur laudantium corporis natus eius sed!</span>
+            <div id="content">
+                ffff
             </div>
-            <div id="Right"></div>
+            <div id="form-submit">
+                <input type="text" id="form-submit-input" placeholder="Enter your answer here...">
+                <span id="form-submit-btn">Validate</span>
+            </div>
         </div>
         <div id="Bottom">
-            <span id="Progress">1/5</span>
+            <span id="progress-container">
+                <span id="progress-curr">0</span>
+                <span>/</span>
+                <span id="progress-max">0</span>
+            </span>
         </div>
     </div>
 </body>
