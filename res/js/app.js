@@ -30,6 +30,14 @@ window.onload = () => {
     document.getElementById('form-submit-btn').addEventListener('click', () => {
         _SOCKET.emit('validateForm', getSession(_SESSION), document.getElementById('form-submit-input').value);
     });
+    // WHEN THEY LEAVE THE TAB
+    window.addEventListener('blur', () => {
+        _SOCKET.emit('treason', getSession(_SESSION));
+    });
+    // 
+    // 
+    // 
+    // 
     // 
     _SOCKET.on('maxValue', (nb) => {
         setValue('progress-max', nb);
@@ -67,8 +75,14 @@ window.onload = () => {
         });
         makeForm({
             type,
-            question
+            question,
+            _SOCKET,
+            _SESSION
         });
+    });
+    // 
+    _SOCKET.on('setHint', (hint) => {
+        makeHint(hint);
     });
     // 
     _SOCKET.on('WRONG', () => {
@@ -118,6 +132,16 @@ function makeForm(data) {
             _CONTAINER.appendChild(img);
             break;
     }
+    // 
+    document.getElementById('form-hint').innerHTML = "";
+    // 
+    let hint_btn = document.createElement('span');
+    hint_btn.id = "hint-txt";
+    hint_btn.innerText = "Need a Hint ?";
+    hint_btn.addEventListener('click', () => {
+        data._SOCKET.emit('getHint', getSession(data._SESSION));
+    });
+    document.getElementById('form-hint').appendChild(hint_btn);
 }
 // 
 function getSession(_SESSION) {
@@ -163,4 +187,26 @@ function timeCorrection(time) {
 // 
 function getIntegerLength(value) {
     return value.toString().length;
+}
+// 
+function makeHint(hint) {
+    document.getElementById('hint-txt').remove();
+    // 
+    let container = document.createElement('div');
+    container.id = "hint-display";
+    // 
+    let childElement;
+    if (hint.search('LINK') > -1) {
+        childElement = document.createElement('img');
+        const _IMG = hint.slice(5, hint.length);
+        childElement.src = _IMG;
+    } else {
+        childElement = document.createElement('span');
+        childElement.innerText = hint;
+    }
+    container.addEventListener('click', () => {
+        container.remove();
+    });
+    container.appendChild(childElement);
+    document.getElementsByTagName('body')[0].appendChild(container);
 }

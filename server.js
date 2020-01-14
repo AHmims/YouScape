@@ -6,9 +6,10 @@ const fsExtra = require('fs-extra');
 const Path = require('path');
 // 
 let connections = 0,
-    set = 2,
+    set = 1,
     localTime = 2700, //2700 = 45min x 60sec
     users = [];
+let timerInter;
 // 
 let jsonPath = Path.join(__dirname, "/res/data/data.json");
 const _ENIGMES = fsExtra.readJSONSync(jsonPath);
@@ -103,11 +104,35 @@ io.sockets.on("connection", (socket) => {
         console.log(`DISCONNECTED | Totall : ${connections}`);
     });
     // 
-    // socket.broadcast.emit('TimeUpdate')
+    socket.on('getHint', (session) => {
+        serveHint(session, socket);
+    })
     // 
+    socket.on('treason', (session) => {
+        timeReduction(300, session);
+    });
     // 
     socket.on('ADMIN_START', () => {
-        timer();
+        timer(socket);
+    });
+    // 
+    socket.on('ADMIN_PAUSE', () => {
+        clearInterval(timerInter);
+    });
+    // 
+    socket.on('ADMIN_RESET', () => {
+        localTime = 2700;
+        for (let i = 0; i < users.length; i++) {
+            users[i].time = localTime;
+        }
+    });
+    // 
+    socket.on('ADMIN_ADD_TIME', (time) => {
+        global_timeAddition(time);
+    });
+    // 
+    socket.on('ADMIN_SUB_TIME', (time) => {
+        global_timeReduction(time);
     });
 });
 // 
@@ -126,28 +151,57 @@ function serveForm(session, socket) {
                 socket.emit('finished');
         }
     });
-
 }
 // 
 function serverPunishment(session, socket) {
     socket.emit("WRONG");
-    for (let i = 0; i < users.length; i++) {
-        if (users[i].group = session)
-            users[i].time -= 300; // 5min x 60 = 300ms
-    }
+    timeReduction(300, session);
 }
 // 
-function timer() {
-    setInterval(() => {
+function serveHint(session, socket) {
+    users.forEach(async element => {
+        if (element.group == session) {
+            let part = _ENIGMES[set - 1].data[element.progress.length];
+            timeReduction(900, session);
+            socket.emit('setHint', part.hint);
+        }
+    });
+}
+// 
+function timer(socket) {
+    timerInter = setInterval(() => {
         if (users.length > 0) {
             for (let i = 0; i < users.length; i++) {
                 localTime--;
                 users[i].time--;
                 io.to(`${users[i].socketId}`).emit('TimeUpdate', users[i].time);
+                socket.emit('ADMIN_TIMER', localTime);
+                // 
+                if (users[i].time == 0)
+                    io.to(`${users[i].socketId}`).emit('finished');
             }
         }
         // console.log(users);
     }, 1000);
+}
+// 
+function timeReduction(value, session) {
+    for (let i = 0; i < users.length; i++) {
+        if (users[i].group = session)
+            users[i].time -= value;
+    }
+}
+// 
+function global_timeReduction(value) {
+    for (let i = 0; i < users.length; i++) {
+        users[i].time -= value;
+    }
+}
+
+function global_timeAddition(value) {
+    for (let i = 0; i < users.length; i++) {
+        users[i].time += value;
+    }
 }
 // server.listen(3000, function () {
 //     console.log('listening on :3000');
