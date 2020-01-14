@@ -3,7 +3,7 @@
         "data": [{
                 "id": "part-1",
                 "type": "text",
-                "question": "L'équivalent de cette série de chiffres <59 4F 55 43 4F 44 45> en lettres :",
+                "question": "L'équivalent de cette série de chiffres <594F55434F4445> en lettres :",
                 "strict_response": "false",
                 "response": "YouCode"
             },
