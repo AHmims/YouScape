@@ -3,8 +3,8 @@
         "data": [{
                 "id": "part-1",
                 "type": "text",
-                "question": "L'équivalent de cette série de chiffres <089 111 117 067 111 100 101> en lettres :",
-                "strict_response": "true",
+                "question": "L'équivalent de cette série de chiffres <59 4F 55 43 4F 44 45> en lettres :",
+                "strict_response": "false",
                 "response": "YouCode"
             },
             {
