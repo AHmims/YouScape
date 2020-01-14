@@ -5,6 +5,7 @@ window.onload = () => {
     document.getElementById('start').addEventListener('click', () => {
         if (!started) {
             _SOCKET.emit('ADMIN_START');
+            console.log('clicked');
             started = !started;
         }
     });

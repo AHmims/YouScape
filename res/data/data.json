@@ -5,13 +5,15 @@
                 "type": "text",
                 "question": "L'équivalent de cette série de chiffres <594F55434F4445> en lettres :",
                 "strict_response": "false",
+                "hint": "Code américain normalisé pour l'échange d'information",
                 "response": "YouCode"
             },
             {
                 "id": "part-2",
                 "type": "text",
-                "question": "Qui il est le person derrière la premiere implementation d'algorithme dans les machines ?",
+                "question": "Qui est la personne derrière la premiere implementation d'algorithme dans les machines ?",
                 "strict_response": "false",
+                "hint": "Décédé en 1852",
                 "response": "Ada Lovelace"
             },
             {
@@ -23,6 +25,7 @@
                     "01101110 01110101 01101001 01110010 01100111 01010100"
                 ],
                 "strict_response": "true",
+                "hint": "Étudié en Europe aux 16e et 17e siècles par Thomas Harriot",
                 "response": "Alan Turing"
             },
             {
@@ -30,6 +33,7 @@
                 "type": "text",
                 "question": "Le mois de naissance de la personne qui a décrypté le système de chiffrement utilisé dans une certaine guerre :",
                 "strict_response": "false",
+                "hint": "The imitation game",
                 "response": "6"
             },
             {
@@ -48,7 +52,7 @@
                 "type": "image",
                 "question": [
                     "Quel animal est-ce ? (en anglais)",
-                    "../img/animal.png"
+                    "./res/img/animal.png"
                 ],
                 "strict_response": "false",
                 "response": "snake"
@@ -67,8 +71,8 @@
                 "id": "part-3",
                 "type": "array",
                 "question": [
-                    "Observez votre entourage et trouvé quatre lettres, puis le transformer en chiffres, réorganisez les chiffres pour trouver le bon choix",
-                    "(A-Z -> 1-26)"
+                    "Observez votre entourage et trouvé quatre lettres",
+                    "puis les regroupez pour trouver le bon choix"
                 ],
                 "strict_response": "false",
                 "response": "1337"
@@ -77,7 +81,7 @@
                 "id": "part-4",
                 "type": "array",
                 "question": [
-                    "Trouver la séquence de lettres",
+                    "Observez bien votre entourage et trouver la séquence de lettres",
                     "(trier la chaine par ordre alphabétique)"
                 ],
                 "strict_response": "false",

@@ -12,6 +12,7 @@ window.onload = () => {
     // 
     if (getSession(_SESSION)) {
         removeLayer('auth');
+        _SOCKET.emit('refreshSession', getSession(_SESSION));
         // getIn(getSession(), _SOCKET);
     } else {
         document.getElementById('auth-btn').addEventListener('click', () => {
@@ -42,6 +43,12 @@ window.onload = () => {
         let min = Math.floor(time / 60);
         let sec = time - min * 60;
         // 
+        if (getIntegerLength(min) == 1)
+            min = timeCorrection(min);
+        if (getIntegerLength(sec) == 1)
+            sec = timeCorrection(sec);
+
+        // 
         setValue('timer-min', min);
         setValue('timer-sec', sec);
     });
@@ -65,7 +72,7 @@ window.onload = () => {
     });
     // 
     _SOCKET.on('WRONG', () => {
-        console.log('slavery');
+        // console.log('slavery');
     });
     // 
     _SOCKET.on('finished', () => {
@@ -99,6 +106,16 @@ function makeForm(data) {
                 title.innerText = data.question[nb];
                 _CONTAINER.appendChild(title);
             }
+            break;
+        case 'image':
+            let titl = document.createElement('span');
+            titl.setAttribute('class', _ATTRIBUTES[0]);
+            titl.innerText = data.question[0];
+            let img = document.createElement('img');
+            img.setAttribute('class', _ATTRIBUTES[1]);
+            img.src = data.question[1];
+            _CONTAINER.appendChild(titl);
+            _CONTAINER.appendChild(img);
             break;
     }
 }
@@ -138,4 +155,12 @@ function finisher() {
     document.getElementsByTagName('body')[0].appendChild(cont);
     // 
     removeLayer('Container');
+}
+// 
+function timeCorrection(time) {
+    return `0${time}`;
+}
+// 
+function getIntegerLength(value) {
+    return value.toString().length;
 }

@@ -6,7 +6,7 @@ const fsExtra = require('fs-extra');
 const Path = require('path');
 // 
 let connections = 0,
-    set = 1,
+    set = 2,
     localTime = 2700, //2700 = 45min x 60sec
     users = [];
 // 
@@ -26,7 +26,9 @@ app.get('/', function (req, res) {
 // 
 io.sockets.on("connection", (socket) => {
     connections++;
-    console.log(`Socket Connected, Totall : ${connections}`);
+    // console.log();
+    console.log(`cc ${socket.id}`);
+    console.log(`CONNECTED | Totall : ${connections}`);
     // console.log(users);
     // 
     socket.on("NewGroup", (session) => {
@@ -38,9 +40,18 @@ io.sockets.on("connection", (socket) => {
                 mistakes: [],
                 time: localTime
             }
+            // socket.emit('TimeUpdate', _TEMPLATE.time);
             users.push(_TEMPLATE);
         } else
             accessDenied("Max Number of Users is 4", "session", socket);
+    });
+    // 
+    socket.on("refreshSession", (session) => {
+        for (let i = 0; i < users.length; i++) {
+            if (users[i].group = session)
+                users[i].socketId = socket.id;
+        }
+        console.log(`cc ${socket.id}`);
     });
     // 
     socket.on("getForm", (session) => {
@@ -89,15 +100,14 @@ io.sockets.on("connection", (socket) => {
     // 
     socket.on("disconnect", (data) => {
         connections--;
-        console.log(`Socket Disconnected, Totall : ${connections}`);
+        console.log(`DISCONNECTED | Totall : ${connections}`);
     });
     // 
-    socket.broadcast.emit('TimeUpdate')
+    // socket.broadcast.emit('TimeUpdate')
     // 
     // 
     socket.on('ADMIN_START', () => {
-        // console.log(socket.id);
-        timer(socket);
+        timer();
     });
 });
 // 
@@ -121,9 +131,13 @@ function serveForm(session, socket) {
 // 
 function serverPunishment(session, socket) {
     socket.emit("WRONG");
+    for (let i = 0; i < users.length; i++) {
+        if (users[i].group = session)
+            users[i].time -= 300; // 5min x 60 = 300ms
+    }
 }
 // 
-function timer(socket) {
+function timer() {
     setInterval(() => {
         if (users.length > 0) {
             for (let i = 0; i < users.length; i++) {

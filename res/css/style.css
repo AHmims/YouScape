@@ -93,6 +93,10 @@ body {
     /* display: block; */
 }
 
+.content-image {
+    width: 700px;
+}
+
 #form-submit {
     margin-top: 50px;
     width: 100%;
